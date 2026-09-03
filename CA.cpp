@@ -97,10 +97,10 @@ int main()
         displayCurrentGeneration(nextGen, GEN_LENGTH);
 
         // Copy nextGen into currentGen for the next iteration.
-        // Copy nextGen into currentGen for the next iteration.
         for (int i = 0; i < GEN_LENGTH; i++)
         {
             currentGen[i] = nextGen[i];
         }
-        return 0;
     }
+    return 0;
+}
