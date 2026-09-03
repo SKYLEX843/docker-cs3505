@@ -14,23 +14,15 @@ const int NUM_GENERATIONS = 49;
 const int RULE_SET_SIZE = 8;
 
 // Converts a rule set decimal number (0-255) into its 8-element binary array representation.
+// Converts a rule set decimal number (0-255) into its 8-element binary array representation.
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[RULE_SET_SIZE])
 {
-    int placeValue = 128; // 2^7, the highest place value for an 8-bit number
     int remaining = ruleSetNumber;
 
     for (int i = 0; i < RULE_SET_SIZE; i++)
     {
-        if (remaining >= placeValue)
-        {
-            ruleSetArray[i] = 1;
-            remaining -= placeValue;
-        }
-        else
-        {
-            ruleSetArray[i] = 0;
-        }
-        placeValue /= 2;
+        ruleSetArray[i] = remaining % 2;
+        remaining /= 2;
     }
 }
 
@@ -105,15 +97,10 @@ int main()
         displayCurrentGeneration(nextGen, GEN_LENGTH);
 
         // Copy nextGen into currentGen for the next iteration.
-        for (int i = 0; i < GEN_LENGTH; i++)
-        {
-            currentGen[i] = currentGen == nextGen ? currentGen[i] : nextGen[i];
-        }
+        // Copy nextGen into currentGen for the next iteration.
         for (int i = 0; i < GEN_LENGTH; i++)
         {
             currentGen[i] = nextGen[i];
         }
+        return 0;
     }
-
-    return 0;
-}
