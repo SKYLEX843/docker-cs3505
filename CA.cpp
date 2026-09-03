@@ -14,7 +14,6 @@ const int NUM_GENERATIONS = 49;
 const int RULE_SET_SIZE = 8;
 
 // Converts a rule set decimal number (0-255) into its 8-element binary array representation.
-// Converts a rule set decimal number (0-255) into its 8-element binary array representation.
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[RULE_SET_SIZE])
 {
     int remaining = ruleSetNumber;
@@ -104,3 +103,40 @@ int main()
     }
     return 0;
 }
+
+
+/*
+ * AI Code Review
+ *
+ * I asked an AI assistant to review my CA.cpp for whether each
+ * function has a single clear responsibility, whether the required function
+ * contracts were followed, and whether there were readability or code-style
+ * issues.
+ *
+ * The AI's review found the following:
+ * - Single responsibility: Each function does one clear job (convert rule
+ *   number, display a generation, compute a neighborhood index, compute the
+ *   next generation). No issues found.
+ * - Function contracts: All four required functions correctly follow their
+ *   specified behavior, including filling every element of the rule set
+ *   array and using the correct bit order (index 0 holds the least
+ *   significant bit).
+ * - Readability/style: The AI flagged one real issue - a duplicated comment
+ *   line appearing twice in a row above convertRuleSetNumberToRuleSetArray.
+ *   It also noted that the "+ right * 1" term in convertNeighborhoodToIndex
+ *   is technically redundant since multiplying by 1 does nothing, but
+ *   suggested it could be left in for readability since it keeps the 4/2/1
+ *   place-value pattern visually consistent.
+ *
+ * My response to two of these comments:
+ *
+ * 1. Duplicated comment line: I agree with this. It was leftover clutter
+ *    from earlier edits and served no purpose, so I removed the duplicate
+ *    line.
+ *
+ * 2. Redundant "* 1" in convertNeighborhoodToIndex: I agree with the AI's
+ *    reasoning and chose to keep it as-is. Even though it doesn't change
+ *    the computed value, it makes the connection to the underlying binary
+ *    place values (4, 2, 1) clearer at a glance, which I think aids
+ *    readability more than removing it would.
+ */
